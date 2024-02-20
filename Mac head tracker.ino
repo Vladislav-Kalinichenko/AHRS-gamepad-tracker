@@ -73,7 +73,7 @@ void loop()
 
   HeadTracker.sendState();
   
-  //Use it for debug the output. If you can not see angle values (nan) - board has stuck.
+  //Use it for debug the output. If you can not see angle values (nan) - board has stuck, i found that reseting it might help (clear EEPROM, get back to the original sketch, open calibration values file, write to arduino and flash it with modified code again).
   Serial.print('\n');
   Serial.print("Yaw: ");
   Serial.print(YPR_head[0]);
