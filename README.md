@@ -19,10 +19,15 @@ Save calibration values into Arduino memory.
 
 Put the code into the corresponding sections of the original code and recompile.
 
+Angle limits for head movements could be changed in map function.
+
 
 I added a button to recenter the tracker position (tied to Pin 7). Still the device can be used on a Win machines as originally designed, but additionally, you will have Gamepad connected (my requirements were 2 axes only, so it is a 2DOF tracker - Yaw and Pitch).
 
 # Known issues
 You may need to launch IDE and monitor the output first, before opening the game. You can use Serial monitor to send the commands into the tracker as well.
 For compilation and calibration Win machine is needed with IDE version 1.8
+Joystick should be calibrated in the game settings to correctly show the max and min head movements.
 
+# To Do
+Refactor code and increase precision, as currently, you can see the steps in movementvs code
