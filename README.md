@@ -31,5 +31,5 @@ You may need to launch IDE and monitor the output first, before opening the game
 Joystick should be calibrated in the game settings to correctly show the max and min head movements.
 
 # To Do
-Refactor code and increase precision, as currently, you can see the steps in head movements. It is recommended to turn off autocentering and apply some deadzone. Initial scale 127 has been changed to 255 during testing, but still the step is 
-On Leonardo board code may stutter or board may stuck -  needs review.
+- Refactor code and increase precision, as currently, you can see the steps in head movements. It is recommended to turn off autocentering and apply some deadzone. Initial scale 127 has been changed to 255 during testing, but still the step is to big.
+- On Leonardo board code may stutter or board may stuck -  needs review.
