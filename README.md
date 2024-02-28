@@ -1,8 +1,8 @@
-# AHRS-gamepad-tracker
+# AHRS-gamepad-tracker (macOS - WarThunder)
 Created as an addition to AHRS Razor tracker, aim to bring it to macOS (via gamepad/joystick functionality - will work with selected games only).
 
 
-As EDTracker no longer has support and has limited options in terms of Sensors (6050 & 91(2)50 only). The 6050 option works fine for first 5 minutes, but has a lot of drift caused by temperature changes, the option with 9250 - didn't manage to run due to a poor sensor. I needed the same functionality as EDTracker has for another project.
+As EDTracker is no longer supported and has limited options in terms of Sensors (6050 & 91(2)50 only). The 6050 option works fine for first 5 minutes, but has a lot of drift caused by temperature changes, the option with 9250 - didn't manage to run due to a poor sensor. I needed the same functionality i.e. gamepad outut, as EDTracker has, for another project.
 
 The original project is RAZOR AHRS here: https://sites.google.com/site/diyheadtracking/home/5dof-tracker 
 
@@ -17,17 +17,19 @@ Compile the original project, and calibrate sensors. Make sure the secure wires 
 
 Save calibration values into Arduino memory. 
 
-Put the code into the corresponding sections of the original code and recompile.
+Put the code into the corresponding sections of the original code and recompile. After code uploading new controller should appera in game devices. At this point Head tracker is usable to game. You may concider to rename your board as well.
 
 Angle limits for head movements could be changed in map function.
 
+I added a button to recenter the tracker position (tied to Pin 7). Properly calibrated sensors will stay centered, button is needed at the first launch or to trim the head position corresponding to the body position during the game. Still the device can be used on a Win machines as originally designed, but additionally, you will have Gamepad connected (my requirements were 2 axes only, so it is a 2DOF tracker - Yaw and Pitch).
 
-I added a button to recenter the tracker position (tied to Pin 7). Still the device can be used on a Win machines as originally designed, but additionally, you will have Gamepad connected (my requirements were 2 axes only, so it is a 2DOF tracker - Yaw and Pitch).
+Tested on macbook air M1 in Warthunder game. 
 
 # Known issues
+For initial calibration Win machine is needed (as it will write the EEPROM data), modification of gamepad code could be done on Mac machine afterwards.
 You may need to launch IDE and monitor the output first, before opening the game. You can use Serial monitor to send the commands into the tracker as well.
-For compilation and calibration Win machine is needed with IDE version 1.8
 Joystick should be calibrated in the game settings to correctly show the max and min head movements.
 
 # To Do
-Refactor code and increase precision, as currently, you can see the steps in movementvs code
+Refactor code and increase precision, as currently, you can see the steps in head movements. It is recommended to turn off autocentering and apply some deadzone. Initial scale 127 has been changed to 255 during testing, but still the step is 
+On Leonardo board code may stutter or board may stuck -  needs review.
