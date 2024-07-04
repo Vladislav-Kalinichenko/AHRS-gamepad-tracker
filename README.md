@@ -8,7 +8,7 @@ The original project is RAZOR AHRS here: https://sites.google.com/site/diyheadtr
 
 Has a much broader sensor selection - over 12 options, can use 5DOF and 3DOF configs, wireless (battery powered).
 
-This code is just an add-on to convert degrees into axis movements to use as a substitution for EDTracker to play certain games on MacOS with head tracking (e.g. flight sims). Arduino Joystick library by Hieronimus has ben used.
+This code is just an add-on to convert degrees into axis movements to use as a substitution for EDTracker to play certain games on MacOS with head tracking (e.g. flight sims). Arduino Joystick library by Hieronimus has been used.
 
 The original project uses OpenTrack protocol and works like a charm by itself, but OpenTrack is not an option on macOS because of a lack of support.
 
@@ -23,7 +23,7 @@ Angle limits for head movements could be changed in map function.
 
 I added a button to recenter the tracker position (tied to Pin 7). Properly calibrated sensors will stay centered, button is needed at the first launch or to trim the head position corresponding to the body position during the game. Still the device can be used on a Win machines as originally designed, but additionally, you will have Gamepad connected (my requirements were 2 axes only, so it is a 2DOF tracker - Yaw and Pitch).
 
-Tested on macbook air M1 in Warthunder game. 
+Tested on macbook air M1 in Warthunder and X-plane games. 
 
 # Known issues
 For initial calibration Win machine is needed (as it will write the EEPROM data), modification of gamepad code could be done on Mac machine afterwards.
