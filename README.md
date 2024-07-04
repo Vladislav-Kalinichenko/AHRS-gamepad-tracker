@@ -1,4 +1,4 @@
-# AHRS-gamepad-tracker (macOS - WarThunder)
+# AHRS-IMU/gamepad-tracker (macOS - WarThunder/X-plane)
 Created as an addition to AHRS Razor tracker, aim to bring it to macOS (via gamepad/joystick functionality - will work with selected games only).
 
 
@@ -17,7 +17,7 @@ Compile the original project, and calibrate sensors. Make sure the secure wires 
 
 Save calibration values into Arduino memory. 
 
-Put the code into the corresponding sections of the original code and recompile. After code uploading new controller should appera in game devices. At this point Head tracker is usable to game. You may concider to rename your board as well.
+Put the code into the corresponding sections of the original code and recompile. After code uploading new controller should appear in game devices. At this point Head tracker is usable to game. You may concider to rename your board as well.
 
 Angle limits for head movements could be changed in map function.
 
@@ -28,8 +28,5 @@ Tested on macbook air M1 in Warthunder game.
 # Known issues
 For initial calibration Win machine is needed (as it will write the EEPROM data), modification of gamepad code could be done on Mac machine afterwards.
 You may need to launch IDE and monitor the output first, before opening the game. You can use Serial monitor to send the commands into the tracker as well.
-Joystick should be calibrated in the game settings to correctly show the max and min head movements.
-
-# To Do
-- Refactor code and increase precision, as currently, you can see the steps in head movements. It is recommended to turn off autocentering and apply some deadzone. Initial scale 127 has been changed to 255 during testing, but still the step is to big.
-- On Leonardo board code may stutter or board may stuck -  needs review.
+Joystick should be calibrated in the game settings to correctly show the max and min head movements. It is recommended to turn off autocentering and apply some deadzone
+On Leonardo board code may stutter or board may stuck.
