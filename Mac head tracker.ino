@@ -4,7 +4,7 @@
 //Include Joystic (Hieronimus) library https://github.com/MHeironimus/ArduinoJoystickLibrary/releases
 #include "Joystick.h"
 // Define the scaling factor for the angles
-#define SCALE 127
+#define SCALE 16383
 
 
 // !!!!!Define joystick object
@@ -24,8 +24,8 @@ void setup()
 
     // Initialize Joystick library
   HeadTracker.begin();
-  HeadTracker.setXAxisRange( -127, 127);
-  HeadTracker.setYAxisRange( -127, 127);
+  HeadTracker.setXAxisRange( -SCALE, SCALE);
+  HeadTracker.setYAxisRange( -SCALE, SCALE);
 
   pinMode(buttonPin, INPUT);
   digitalWrite(buttonPin, HIGH); // Enable internal pull-up resistor
@@ -57,15 +57,17 @@ void loop()
   }
 
   lastButtonState = reading;
-    
-  //map yaw and pitch angles to variables to reuse them as a values for axis:
-  int newx = map(YPR_head[0], -17, 17, 0, SCALE); // Assuming -17 to 17 degrees range of head movement for yaw
-  int newy = map(YPR_head[1], -10, 15, 0, SCALE); //
+
+    //increase precision by multiplying (angle values):
+  float yR = YPR_head[0]*1000; 
+  float pR = YPR_head[1]*1000; 
+  //map the values to scale:
+  float newx = map(yR, -33000.0, 33000.0, 0, SCALE); // Assuming ~-30 to 30 degrees range
+  float newy = map(pR, -24000.0, 24000.0, 0, SCALE); // Assuming ~-20 to 20 degrees range (tweak these numbers when you will debug)
 
   //constrain values to the SCALE
   newx = constrain (newx, 0, SCALE);
   newy = constrain (newy, 0, SCALE);
-
 
   // Set the joystick axes values
   HeadTracker.setXAxis(newx);
@@ -74,15 +76,15 @@ void loop()
   HeadTracker.sendState();
   
   //Use it for debug the output. If you can not see angle values (nan) - board has stuck, i found that reseting it might help (clear EEPROM, get back to the original sketch, open calibration values file, write to arduino and flash it with modified code again).
-  Serial.print('\n');
-  Serial.print("Yaw: ");
-  Serial.print(YPR_head[0]);
-  Serial.print("  Pitch: ");
-  Serial.println(YPR_head[1]);
-  Serial.print("X: ");
-  Serial.print(newx);
-  Serial.print("  Y: ");
-  Serial.println(newy);
+    //Serial.print('\n');
+    //Serial.print("Yaw: ");
+    //Serial.print(yawRad);
+    //Serial.print(newx );
+    //Serial.print("YPR: ");
+    //Serial.println(pitchRad);
+    //Serial.println(newy );
+    //Serial.println(YPR_head[0],5 );
+    //Serial.println(yR,5 );
     
 
   delay(10);
